@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from '../Assets/logo.png';
 import cart from '../Assets/cart_icon.png';
 import { Link } from "react-router-dom";
+import { ShopContext } from "../../Context/ShopContext";
 const Navbar=()=>{
     const [menu,setMenu]=useState("shop");
+    const {getTotalItem}=useContext(ShopContext);
     return (
 <div className="flex flex-row justify-around items-center  h-20 pt-5 pb-5 align-middle bg-white">
 <div className="flex flex-row ml-10">
@@ -22,7 +24,7 @@ const Navbar=()=>{
 <div className="flex flex-row mr-10">
    <Link to='/signup'> <button className="w-28 text-xl font-semibold border-2 border-black rounded-3xl hover:bg-red-500 hover:text-white pb-1">Login</button></Link>
     <Link to='/cart'><img src={cart} alt="" className="ml-2 w-8 cursor-pointer"/></Link>
-    <div className=" flex justify-center align-middle items-center text-white bg-red-500 w-5 h-5 text-center  rounded-t-xl rounded-b-xl -mt-1 -ml-3">0</div>
+    <div className=" flex justify-center align-middle items-center text-white bg-red-500 w-5 h-5 text-center  rounded-t-xl rounded-b-xl -mt-1 -ml-3">{getTotalItem()}</div>
 </div>
 </div>
     )
